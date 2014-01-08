@@ -35,6 +35,10 @@ public class Change extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         stockQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM Stock s");
         stockList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockQuery.getResultList();
+        stockQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM Stock s");
+        stockList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockQuery1.getResultList();
+        stockQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT s FROM Stock s");
+        stockList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : stockQuery2.getResultList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         cmbCurrency1 = new javax.swing.JComboBox();
@@ -303,6 +307,20 @@ public class Change extends javax.swing.JFrame {
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 260));
 
         jTable3.setEnabled(false);
+        jTable3.getTableHeader().setReorderingAllowed(false);
+
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, stockList2, jTable3);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${stockid}"));
+        columnBinding.setColumnName("Stockid");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${code}"));
+        columnBinding.setColumnName("Code");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${stock}"));
+        columnBinding.setColumnName("Stock");
+        columnBinding.setColumnClass(Double.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         TableColumnModel table = jTable3.getColumnModel();
         TableColumn hideColumn = table.getColumn(0);
         jTable3.getColumnModel().removeColumn(hideColumn);
@@ -393,14 +411,16 @@ public class Change extends javax.swing.JFrame {
     jPanel3Layout.setHorizontalGroup(
         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel3Layout.createSequentialGroup()
-            .addGap(15, 15, 15)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(15, 15, 15)
                     .addComponent(btnSettingsTotal)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(saveButton)))
-            .addGap(50, 50, 50)
+                    .addComponent(saveButton))
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(41, 41, 41)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,7 +446,7 @@ public class Change extends javax.swing.JFrame {
                 .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(24, 24, 24)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -549,7 +569,11 @@ public class Change extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtSell;
     private javax.swing.JButton saveButton;
     private java.util.List<javaproject.com.Stock> stockList;
+    private java.util.List<javaproject.com.Stock> stockList1;
+    private java.util.List<javaproject.com.Stock> stockList2;
     private javax.persistence.Query stockQuery;
+    private javax.persistence.Query stockQuery1;
+    private javax.persistence.Query stockQuery2;
     private javax.swing.JTextField txtAdress;
     private javax.swing.JFormattedTextField txtCurrency1;
     private javax.swing.JFormattedTextField txtCurrency2;

@@ -44,7 +44,7 @@ public class Stock implements Serializable {
     @Column(name = "code")
     private String code;
     @Column(name = "stock")
-    private Long stock;
+    private double stock;
 
     public Stock() {
     }
@@ -78,12 +78,12 @@ public class Stock implements Serializable {
         changeSupport.firePropertyChange("code", oldCode, code);
     }
 
-    public Long getStock() {
+    public double getStock() {
         return stock;
     }
 
-    public void setStock(Long stock) {
-        Long oldStock = this.stock;
+    public void setStock(double stock) {
+        double oldStock = this.stock;
         this.stock = stock;
         changeSupport.firePropertyChange("stock", oldStock, stock);
     }
