@@ -225,6 +225,7 @@ public class DataBase {
     }
 	
     public void updateStock(double amount,int stockId) {
+        System.out.println(stockId);
         try{
             pst = conn.prepareStatement("UPDATE stock SET stock = ? WHERE stockid = ?");
             pst.setDouble(1, amount);
