@@ -224,11 +224,11 @@ public class DataBase {
         }
     }
 	
-    public void updateStock(double amount,int profitId) {
+    public void updateStock(double amount,int stockId) {
         try{
-            pst = conn.prepareStatement("UPDATE stock SET stock = ? WHERE profitid = ?");
+            pst = conn.prepareStatement("UPDATE stock SET stock = ? WHERE stockid = ?");
             pst.setDouble(1, amount);
-            pst.setInt(2, profitId);
+            pst.setInt(2, stockId);
             pst.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
